@@ -1,0 +1,29 @@
+<section class="tour" aria-label="Garden language tour" hidden>
+  <nav class="tour-trail" aria-label="Tour lessons"></nav>
+  <article class="tour-lesson">
+    <h1 id="tour-title"></h1>
+    <p id="tour-description"></p>
+  </article>
+  <div class="tour-workspace">
+    <section class="snippet" aria-labelledby="tour-filename">
+      <div class="snippet-titlebar">
+        <span class="code-title" id="tour-filename"></span>
+        <div class="snippet-actions">
+          <button id="tour-reset" type="button">Reset</button>
+          <button id="tour-run" type="button">Run</button>
+        </div>
+      </div>
+      <div id="tour-editor"></div>
+    </section>
+    <section class="snippet" aria-labelledby="tour-output-title">
+      <div class="snippet-titlebar">
+        <span class="code-title" id="tour-output-title">Output</span>
+      </div>
+      <div id="tour-output" class="snippet-output" role="status"></div>
+    </section>
+  </div>
+  <nav class="tour-pagination" aria-label="Lesson navigation">
+    <button id="tour-previous" type="button">Previous</button>
+    <button id="tour-next" type="button">Next lesson</button>
+  </nav>
+</section>

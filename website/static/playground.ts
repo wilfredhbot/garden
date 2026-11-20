@@ -5,6 +5,7 @@ import {
   setEditorDiagnostics,
 } from "./editor";
 import { setupSnippetButtons } from "./snippets";
+import { setupTour } from "./tour";
 
 // How long to wait after the last edit before checking the code.
 const CHECK_DEBOUNCE_MS = 250;
@@ -69,6 +70,7 @@ function setupPlayground(): void {
 
 setupSnippetButtons();
 setupPlayground();
+setupTour();
 
 const footerPlant = document.querySelector<HTMLButtonElement>(".footer-plant");
 if (footerPlant) {

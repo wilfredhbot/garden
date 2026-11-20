@@ -266,12 +266,14 @@ button:hover {
   background: #e5ecdd;
   border-color: #849a77;
 }
-#playground-run {
+#playground-run,
+#tour-run {
   background: #e1e9d9;
   border-color: #849a77;
   color: #29452c;
 }
-#playground-run:hover {
+#playground-run:hover,
+#tour-run:hover {
   background: #d5e1ca;
   border-color: #66825b;
 }
@@ -569,5 +571,55 @@ footer {
 @media (max-width: 420px) {
   h1 {
     font-size: 36px;
+  }
+}
+
+.tour-trail {
+  gap: 8px;
+}
+.tour-trail a {
+  flex: 1 0 auto;
+  background: var(--pale-cream);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 8px 12px;
+}
+.tour-trail a[aria-current="step"] {
+  background: #dfe7d7;
+  border-color: var(--green-primary);
+}
+.tour-lesson {
+  margin-top: 24px;
+}
+.tour-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.tour-workspace .snippet {
+  margin: 0;
+}
+.tour-workspace .snippet-titlebar {
+  min-height: 53px;
+  padding: 8px 12px;
+}
+.tour-workspace .snippet-output {
+  border-top: 0;
+  padding: 12px;
+}
+#tour-editor .cm-content {
+  min-height: 12rem;
+}
+.tour-pagination {
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.tour-pagination button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+@media (max-width: 600px) {
+  .tour-workspace {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

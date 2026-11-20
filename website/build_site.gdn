@@ -311,6 +311,9 @@ fun build_site(): Unit {
   let base_tmpl_path = website_dir.join("template.html")
   let base_tmpl_src = fs::read_file(base_tmpl_path).or_throw()
 
+  let tour_src = fs::read_file(website_dir.join("tour.html")).or_throw()
+  write_website_page(base_tmpl_src, tour_src, out_dir.join("tour.html"), Some("Language Tour"))
+
   build_blog(website_dir, out_dir, base_tmpl_src)
 
   let seen_keyword_pages: List<String> = []
