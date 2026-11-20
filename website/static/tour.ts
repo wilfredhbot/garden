@@ -44,16 +44,17 @@ export function setupTour(): void {
   let currentIndex = -1;
   let editor: ReturnType<typeof createGardenEditor> | undefined;
 
-  const links = lessons.map((lesson, index) => {
-    const link = document.createElement("a");
-    link.href = `#${lesson.id}`;
-    link.textContent = `${index + 1}. ${lesson.title}`;
-    trail.append(link);
-    return link;
+  const buttons = lessons.map((lesson, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = `${index + 1}. ${lesson.title}`;
+    button.addEventListener("click", () => { location.hash = lesson.id; });
+    trail.append(button);
+    return button;
   });
 
   function showLesson(): void {
-    const index = Math.max(0, links.findIndex((link) => link.hash === location.hash));
+    const index = Math.max(0, lessons.findIndex((lesson) => `#${lesson.id}` === location.hash));
     const lesson = lessons[index];
     if (!lesson || index === currentIndex) return;
     currentIndex = index;
@@ -61,9 +62,9 @@ export function setupTour(): void {
     title.textContent = lesson.title;
     description.textContent = lesson.description;
     filename.textContent = lesson.filename;
-    links.forEach((link, i) => {
-      if (i === index) link.setAttribute("aria-current", "step");
-      else link.removeAttribute("aria-current");
+    buttons.forEach((button, i) => {
+      if (i === index) button.setAttribute("aria-current", "step");
+      else button.removeAttribute("aria-current");
     });
     previous.disabled = index === 0;
     next.disabled = index === lessons.length - 1;
@@ -99,12 +100,12 @@ export function setupTour(): void {
     editor.focus();
   });
   previous.addEventListener("click", () => {
-    const link = links[currentIndex - 1];
-    if (link) location.hash = link.hash;
+    const lesson = lessons[currentIndex - 1];
+    if (lesson) location.hash = lesson.id;
   });
   next.addEventListener("click", () => {
-    const link = links[currentIndex + 1];
-    if (link) location.hash = link.hash;
+    const lesson = lessons[currentIndex + 1];
+    if (lesson) location.hash = lesson.id;
   });
   window.addEventListener("hashchange", showLesson);
   showLesson();

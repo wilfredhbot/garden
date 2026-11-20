@@ -577,16 +577,13 @@ footer {
 .tour-trail {
   gap: 8px;
 }
-.tour-trail a {
+.tour-trail button {
   flex: 1 0 auto;
-  background: var(--pale-cream);
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  padding: 8px 12px;
 }
-.tour-trail a[aria-current="step"] {
+.tour-trail button[aria-current="step"] {
   background: #dfe7d7;
   border-color: var(--green-primary);
+  font-weight: 700;
 }
 .tour-lesson {
   margin-top: 24px;
