@@ -30,9 +30,11 @@ type PreludeTypes = {
   prelude_types: string[];
 };
 
+type RunResult = StdoutOutput | StderrOutput | PlaygroundResult | PreludeTypes;
+
 type PlaygroundResponse = {
   success: boolean;
-  results?: (StdoutOutput | StderrOutput | PlaygroundResult | PreludeTypes)[];
+  results?: RunResult[];
   error?: string;
   rawOutput?: string;
 };
@@ -69,7 +71,11 @@ function renderType(type: string, preludeTypes: ReadonlySet<string>): string {
     .join("");
 }
 
-export function evalSnippet(src: string, snippetDiv: HTMLElement): void {
+export function evalSnippet(
+  src: string,
+  snippetDiv: HTMLElement,
+  onSuccess?: (results: RunResult[]) => void,
+): void {
   snippetDiv.hidden = false;
 
   snippetDiv.innerHTML = '<div class="spinner"></div>';
@@ -143,6 +149,7 @@ export function evalSnippet(src: string, snippetDiv: HTMLElement): void {
         }
 
         snippetDiv.innerHTML = output;
+        onSuccess?.(data.results);
       }
     })
     .catch((error: unknown) => {
